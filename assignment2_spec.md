@@ -301,10 +301,10 @@ This task is handled by the class `VelocityKinematic` in the header `velocity_ki
 
 1. Assume initial velocities are both zero.
 2. Calculate time difference `dt` between the last time `stamp` and the current time. You can get the current time by calling the function `now()`. Hint: The ROS time class has a method called `seconds()`;
-3. Integrate the velocity at the rate `refresh_period` milliseconds. `refresh_period` is a constructor parameter.
+3. Integrate the acceleration to get velocity at the minimum rate of `1/refresh_period`.
 4. You can use the formula: `v(t+dt) = v(t) + dt * a(t)`
 5. Print the accelerations and velocities to the screen: Format: `DT: {}, Linear Acceleration: {}, Linear velocity: {}, Angular acceleration: {}, Angular velocity: {}`. `{}` indicates the position of each value and should not be printed.
-6. Send a `geometry_msgs::msg::TwistStamped` to the topic `/z0000000/velocity` at frequency of `1/refresh_period`. 
+6. Send a `geometry_msgs::msg::TwistStamped` to the topic `/z0000000/velocity` at frequency of `1/refresh_period` with the most up to date velocities. 
 
 The `geometry_msgs::msg::TwistStamped` message should contain:
 * Linear velocity as the `x` component of the `linear` part of `twist` member in message.
@@ -320,10 +320,12 @@ The `geometry_msgs::msg::TwistStamped` message should contain:
 
 ### Sub-task C: Calculate position and orientation (pose) (1.5 marks)
 This task is handled by the class `PoseKinematic` in the header `pose_kinematic.hpp`. This class will subscribe to the topic `/z0000000/velocity` from the last part and integrate the velocity to get current pose. Periodically send the calculated pose as a `geometry_msgs::msg::PoseStamped` message to the topic `/z0000000/pose`.
+
 * Assume starting at the origin (0.0, 0.0) with heading = 0.
 * Calculate time difference between the last time `stamp` and the current time.
 * Convert the velocity to the global coordinate frame using trigonometric functions.
-* Calculate the position and orientation at the rate `refresh_period` milliseconds. `refresh_period` is a constructor parameter.
+* Calculate the position and orientation at the frequency of `1/refresh_period` . `refresh_period` is a constructor parameter.
+* Send a `geometry_msgs::msg::PoseStamped` to the topic `/z0000000/pose` at the frequency of `1/refresh_period` with the most up to date pose. 
 
 The `geometry_msgs::msg::PoseStamped` message should contain"
 * (x,y) coordinate as the `position` part of `pose` member in message.
