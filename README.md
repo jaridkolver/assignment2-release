@@ -112,4 +112,12 @@ Study the ros2 tutorial section of assignment 2 spec. Start task 1 by subscribin
 * [ROS](https://marketplace.visualstudio.com/items?itemName=ms-iot.vscode-ros) : Provide some ros specific tools.
 * [Gitlens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) : Additional git features to complement features built into vscode.
 
+
+### Q: Joy_node is not able to find joystick at `/dev/input/js1`
+For non virtualbox user:
+Joy_node.py config the joystick driver to read from `/dev/input/js1` to work around an issue with virtual box emulating a virtual joystick at `/dev/input/js0`. If you are using another software such as vmware the xbox joystick will not appear at `/dev/input/js1` you need to change it by using the command:
+`sudo mv /dev/input/js0 /dev/input/js1`
+
+**OR** change the joystick config yaml in the launch folder to get joystick driver to read from `/dev/input/js0` and then rebuild your package.
+
 If you encountered any problems and figured out a fix to it, let us know and we can add it to the FAQ.
