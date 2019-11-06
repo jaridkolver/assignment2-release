@@ -304,7 +304,7 @@ This task is handled by the class `VelocityKinematic` in the header `velocity_ki
 3. Integrate the acceleration to get velocity at the minimum rate of `1/refresh_period`.
 4. You can use the formula: `v(t+dt) = v(t) + dt * a(t)`
 5. Print the accelerations and velocities to the screen: Format: `DT: {}, Linear Acceleration: {}, Linear velocity: {}, Angular acceleration: {}, Angular velocity: {}`. `{}` indicates the position of each value and should not be printed.
-6. Send a `geometry_msgs::msg::TwistStamped` to the topic `/z0000000/velocity` at frequency of `1/refresh_period` with the most up to date velocities. 
+6. Send a `geometry_msgs::msg::TwistStamped` to the topic `/z0000000/velocity` at a frequency of `1/refresh_period` with the most up to date velocities. 
 
 The `geometry_msgs::msg::TwistStamped` message should contain:
 * Linear velocity as the `x` component of the `linear` part of `twist` member in message.
@@ -321,11 +321,11 @@ The `geometry_msgs::msg::TwistStamped` message should contain:
 ### Sub-task C: Calculate position and orientation (pose) (1.5 marks)
 This task is handled by the class `PoseKinematic` in the header `pose_kinematic.hpp`. This class will subscribe to the topic `/z0000000/velocity` from the last part and integrate the velocity to get current pose. Periodically send the calculated pose as a `geometry_msgs::msg::PoseStamped` message to the topic `/z0000000/pose`.
 
-* Assume starting at the origin (0.0, 0.0) with heading = 0.
-* Calculate time difference between the last time `stamp` and the current time.
-* Convert the velocity to the global coordinate frame using trigonometric functions.
-* Calculate the position and orientation at the frequency of `1/refresh_period` . `refresh_period` is a constructor parameter.
-* Send a `geometry_msgs::msg::PoseStamped` to the topic `/z0000000/pose` at the frequency of `1/refresh_period` with the most up to date pose. 
+1. Assume starting at the origin (0.0, 0.0) with heading = 0.
+2. Calculate time difference between the last time `stamp` and the current time.
+3. Convert the velocity to the global coordinate frame using trigonometric functions.
+4. Calculate the position and orientation at the frequency of `1/refresh_period` . `refresh_period` is a constructor parameter.
+5. Send a `geometry_msgs::msg::PoseStamped` to the topic `/z0000000/pose` at a frequency of `1/refresh_period` with the most up to date pose. 
 
 The `geometry_msgs::msg::PoseStamped` message should contain"
 * (x,y) coordinate as the `position` part of `pose` member in message.
@@ -375,15 +375,15 @@ This task is handled by the class `ConfigParser` in the header `config_parser.hp
 
 The most important thing with style is to make your code understandable to other people. 
 
-* Follow the course style guide which is based on ROS2 development guide.
-* Neat and tidy code, style is consistent throughout. 
-* Good choice of names that are meaningful. 
-* Good use of functions to split code into manageable segments and avoid code duplication.
-* Good use of c++ features.
-* Good documentation and comments. 
-* No error or warning message when compiling. 
-* `master` branch must be able to compile and work. 
-* Consistent use of source management. Create development branches. Keep your Github repository up to date with you work. Write meaningful commit message. 
+1. Follow the course style guide which is based on ROS2 development guide.
+2. Neat and tidy code, style is consistent throughout. 
+3. Good choice of names that are meaningful. 
+4. Good use of functions to split code into manageable segments and avoid code duplication.
+5. Good use of c++ features.
+6. Good documentation and comments. 
+7. No error or warning message when compiling. 
+8. `master` branch must be able to compile and work. 
+9. Consistent use of source management. Create development branches. Keep your Github repository up to date with you work. Write meaningful commit message. 
 
 ## Finally
 For full marks on each component you will need to demonstrate it working and be able to explain the code you have implemented to your demonstrator within your demonstration.
