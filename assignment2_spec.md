@@ -262,7 +262,7 @@ In the method `joy_message_callback`:
 2. Use `std::count` or `std::count_if` to find out how many buttons have been pressed simultaneously. Print the value to `std::cout` in the format: `Total number of buttons pressed is {}.\n`, replace `{}` with total number of buttons pressed.
 
 ### Sub-task B: Calculate linear and angular acceleration inputs (4 marks)
-The axes we will need to read from are defined in `config_` .
+The axes we will need to read from are specified in `config_` .
 * speed_plus_axis: Positive linear acceleration axis
 * speed_minus_axis: Negative linear acceleration axis
 * steering_axis: Angular acceleration axis
