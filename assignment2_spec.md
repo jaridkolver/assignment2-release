@@ -184,7 +184,7 @@ class Example : public rclcpp::Node {
 auto string_information = sensor_msgs::msg::String();
 // the fields of a particular structure can be found in the "msgs" directory of a "msgs" package if it is a custom message
 string_information.message = std::string("This is some example text that will be sent through a topic");
-string_publisher_->publish(stringInformation);
+string_publisher_->publish(string_information);
 ```
 
 ### Timers
