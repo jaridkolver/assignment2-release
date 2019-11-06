@@ -327,7 +327,7 @@ This task is handled by the class `PoseKinematic` in the header `pose_kinematic.
 
 The `geometry_msgs::msg::PoseStamped` message should contain"
 * (x,y) coordinate as the `position` part of `pose` member in message.
-* Angular acceleration as the `z` component of the `orientation` part of `pose` member in message.
+* Heading as the `z` component of the `orientation` part of `pose` member in message.
 * Use the time used to calculate `dt` as the time `stamp` in the `header`
 * Use `zid` as the `header.frame_id`.
 
